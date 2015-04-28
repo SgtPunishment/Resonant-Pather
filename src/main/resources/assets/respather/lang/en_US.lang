@@ -1,19 +1,6 @@
-# Gui
-itemGroup.roadblock.creativeTab=Roadblocks
-achievement.buildRoad=The Road not taken
-achievement.buildRoad.desc=Crafting a road block
-
-# Blocks
-tile.roadblock.road.name=%s Road
-tile.roadblock.slab.name=%s Road Slab
-tile.roadblock.default.roadblock.name=Roadblock
-tile.roadblock.decor.worndirtpath.name=Worn Dirt
-tile.roadblock.decor.yellowbrickroad.name=Yellow Brick
-
-# Items
-item.roadblock.mallet.iron.name=Iron Paving Mallet
-item.roadblock.mallet.gold.name=Gold Paving Mallet
-item.roadblock.mallet.emerald.name=Diamond Paving Mallet
-
-# Console
-info.roadblock.config.reload=Refreshing configuration file.
+# GUI
+itemGroup.respather=Resonant Pather
+# Chat
+chat.respather.util.configupdate=Updating config...
+chat.respather.util.configload=Loaded configuration file!
+chat.respather.util.configloadfail=Failed to load configuration file!
