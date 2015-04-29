@@ -7,7 +7,8 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerBag extends Container {
 	
-	public ContainerBag(InventoryPlayer player){
+	public ContainerBag(InventoryPlayer player, InventoryBag bag){
+		
 		this.addSlotToContainer(new Slot(player, 0, 62, 17));
 		this.addSlotToContainer(new Slot(player, 1, 80, 17));
 		this.addSlotToContainer(new Slot(player, 2, 98, 17));
@@ -20,16 +21,13 @@ public class ContainerBag extends Container {
 		this.addSlotToContainer(new Slot(player, 7, 80, 53));
 		this.addSlotToContainer(new Slot(player, 8, 98, 53));
 		
-		int i;
-
-		for (i = 0; i < 3; ++i) {
+		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
-				this.addSlotToContainer(new Slot(player, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
+				this.addSlotToContainer(new Slot(player, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
 
-		for (i = 0; i < 9; ++i) {
+		for (int i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
 		}
 }

@@ -17,8 +17,8 @@ public class GuiBasicBag extends GuiContainer {
     
     public Container inventorySlots;
     
-	public GuiBasicBag(InventoryPlayer inventPlayer) {
-		super(new ContainerBag(inventPlayer));
+	public GuiBasicBag(InventoryPlayer inventPlayer, InventoryBag inventBag) {
+		super(new ContainerBag(inventPlayer, inventBag));
 		this.xSize = GUI_WIDTH;
         this.ySize = GUI_HEIGHT;
 	}

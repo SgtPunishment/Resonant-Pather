@@ -15,6 +15,7 @@ import com.whammich.respather.utils.Register;
 import cpw.mods.fml.common.Optional;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles")
+
 public class ItemBagBase extends Item implements IBauble {
 
 	public ItemBagBase() {
@@ -27,39 +28,27 @@ public class ItemBagBase extends Item implements IBauble {
 	
 	@Override
 	public boolean canEquip(ItemStack arg0, EntityLivingBase arg1) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean canUnequip(ItemStack arg0, EntityLivingBase arg1) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public BaubleType getBaubleType(ItemStack arg0) {
-		// TODO Auto-generated method stub
 		return BaubleType.BELT;
 	}
 
 	@Override
-	public void onEquipped(ItemStack arg0, EntityLivingBase arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onEquipped(ItemStack arg0, EntityLivingBase arg1) {}
 
 	@Override
-	public void onUnequipped(ItemStack arg0, EntityLivingBase arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onUnequipped(ItemStack arg0, EntityLivingBase arg1) {}
 
 	@Override
-	public void onWornTick(ItemStack arg0, EntityLivingBase arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onWornTick(ItemStack arg0, EntityLivingBase arg1) {}
 
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
@@ -67,7 +56,5 @@ public class ItemBagBase extends Item implements IBauble {
 			player.openGui(Respather.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
 		}
 		return super.onItemRightClick(stack, world, player);
-		
 	}
-	
 }
