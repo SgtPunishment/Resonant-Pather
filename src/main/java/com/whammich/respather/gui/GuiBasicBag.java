@@ -1,20 +1,24 @@
 package com.whammich.respather.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiBasicBag extends GuiScreen {
+public class GuiBasicBag extends GuiContainer {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/dispenser.png");
 	private static final int GUI_WIDTH = 176;
     private static final int GUI_HEIGHT = 166;
     private int xSize, ySize, guiLeft, guiTop;
-	public GuiBasicBag(ItemStack stack, EntityPlayer player) {
+    
+    public Container inventorySlots;
+    
+	public GuiBasicBag(InventoryPlayer inventPlayer) {
+		super(new ContainerBag(inventPlayer));
 		this.xSize = GUI_WIDTH;
         this.ySize = GUI_HEIGHT;
 	}

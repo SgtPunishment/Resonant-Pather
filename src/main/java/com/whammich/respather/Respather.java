@@ -18,9 +18,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 		guiFactory = Reference.GuiFactory_class
 	)
 
-public class Main {
+public class Respather {
 	@Instance(Reference.MOD_ID)
-	public static Main modInstance;
+	public static Respather modInstance;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

@@ -13,12 +13,14 @@ public class GuiHandler implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		return null;
+		return ID == 0 ? new ContainerBag(player.inventory) : null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		return ID == 0 ? new GuiBasicBag(player.getCurrentEquippedItem(), player) : null;
+		return ID == 0 ? new GuiBasicBag(player.inventory) : null;
+				
+				//GuiBasicBag(player.getCurrentEquippedItem(), player) : null;
 	}
 
 }
