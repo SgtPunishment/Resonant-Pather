@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 
-import com.whammich.respather.Respather;
+import com.whammich.respather.Main;
 import com.whammich.respather.utils.Reference;
 import com.whammich.respather.utils.Register;
 
@@ -64,7 +64,7 @@ public class ItemBagBase extends Item implements IBauble {
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		if(world.isRemote) {
-			player.openGui(Respather.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
+			player.openGui(Main.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
 		}
 		return super.onItemRightClick(stack, world, player);
 		
