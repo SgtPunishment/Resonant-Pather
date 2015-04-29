@@ -31,11 +31,15 @@ if (new File(projectDir, '.git').exists()) {
 }
 
 repositories {
-
+    ivy {
+        name "Baubles"
+        artifactPattern "https://dl.dropboxusercontent.com/u/47135879/[module]-deobf-1.7.10-[revision].[ext]"
+    }
 }
 
 dependencies {
-
+    compile name: 'Baubles', version: "${baubles_version}", ext: 'jar'
+	compile fileTree(dir: 'libs', include: ['*jar'])
 }
 
 minecraft {
