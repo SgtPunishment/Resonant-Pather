@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -27,8 +26,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 	
     public ItemBaseTool() {
     	super();
-    	setUnlocalizedName(Reference.MOD_ID + ".tool.base");
-    	setTextureName(Reference.MOD_ID + ":toolbase");
+    	setUnlocalizedName(Reference.MOD_ID + ".tool.");
     	setCreativeTab(Register.CREATIVE_TAB);
     }
     
@@ -44,13 +42,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean held) {
-        if (!world.isRemote) {
-            if (getEnergyStored(stack) <= 0) {
-                ((EntityPlayer) entity).inventory.decrStackSize(slot, 1);
-                ((EntityPlayer) entity).inventory.addItemStackToInventory(new ItemStack(Items.baked_potato, 2));
 
-            }
-        }
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

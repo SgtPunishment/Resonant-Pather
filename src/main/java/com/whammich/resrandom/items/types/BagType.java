@@ -1,5 +1,7 @@
 package com.whammich.resrandom.items.types;
 
+import java.util.Locale;
+
 public enum BagType {
 
 	BASIC(9),
@@ -11,4 +13,9 @@ public enum BagType {
 	private BagType(int slots) {
 		this.slots = slots;
 	}
+	
+	@Override
+    public String toString() {
+        return name().toLowerCase(Locale.ENGLISH);
+    }
 }

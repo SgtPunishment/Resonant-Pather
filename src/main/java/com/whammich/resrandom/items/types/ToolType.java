@@ -1,5 +1,7 @@
 package com.whammich.resrandom.items.types;
 
+import java.util.Locale;
+
 public enum ToolType {
 
 	CREATIVE(0, 100000000), 
@@ -14,4 +16,9 @@ public enum ToolType {
 		this.capacity = capacity;
 	}
 
+	@Override
+    public String toString() {
+        return name().toLowerCase(Locale.ENGLISH);
+    }
+	
 }
