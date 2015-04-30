@@ -10,9 +10,13 @@ public class InventoryBag implements IInventory {
 	public EntityPlayer player;
 	public ItemStack[] inventory;
 	
+	public InventoryBag() {
+		inventory = new ItemStack[9];
+	}
+	
 	@Override
 	public int getSizeInventory() {
-		return 9;
+		return inventory.length;
 	}
 
 	@Override
