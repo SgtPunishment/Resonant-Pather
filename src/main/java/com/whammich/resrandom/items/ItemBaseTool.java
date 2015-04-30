@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
 	public static int capacity = 16000;
-    public static int send = 80;
+    public static int send = 0;
     public static int recieve = 0;
 	
     public ItemBaseTool() {
