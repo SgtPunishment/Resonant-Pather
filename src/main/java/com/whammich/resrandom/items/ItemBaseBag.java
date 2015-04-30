@@ -1,6 +1,9 @@
 package com.whammich.resrandom.items;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -31,30 +34,30 @@ public class ItemBaseBag extends Item implements IBauble {
 	}
 
 	@Override
-	public boolean canEquip(ItemStack arg0, EntityLivingBase arg1) {
+	public boolean canEquip(ItemStack stack, EntityLivingBase entity) {
 		return true;
 	}
 
 	@Override
-	public boolean canUnequip(ItemStack arg0, EntityLivingBase arg1) {
+	public boolean canUnequip(ItemStack stack, EntityLivingBase entity) {
 		return true;
 	}
 
 	@Override
-	public BaubleType getBaubleType(ItemStack arg0) {
+	public BaubleType getBaubleType(ItemStack stack) {
 		return BaubleType.BELT;
 	}
 
 	@Override
-	public void onEquipped(ItemStack arg0, EntityLivingBase arg1) {
+	public void onEquipped(ItemStack stack, EntityLivingBase entity) {
 	}
 
 	@Override
-	public void onUnequipped(ItemStack arg0, EntityLivingBase arg1) {
+	public void onUnequipped(ItemStack stack, EntityLivingBase entity) {
 	}
 
 	@Override
-	public void onWornTick(ItemStack arg0, EntityLivingBase arg1) {
+	public void onWornTick(ItemStack stack, EntityLivingBase entity) {
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world,
@@ -75,5 +78,12 @@ public class ItemBaseBag extends Item implements IBauble {
 	
 	public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + BagType.values()[stack.getItemDamage()].toString();
+    }
+	
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void getSubItems(Item item, CreativeTabs tabs, List list) {
+    	for (int i = 1; i < BagType.values().length; ++i) {
+            list.add(new ItemStack(item, 1, i));
+        }
     }
 }

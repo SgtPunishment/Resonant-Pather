@@ -50,7 +50,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
         list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, ToolType.CREATIVE.ordinal()), ToolType.CREATIVE.capacity));
         
-        for (int i = 2; i < ToolType.values().length; ++i) {
+        for (int i = 1; i < ToolType.values().length; ++i) {
             list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
             list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), ToolType.values()[i].capacity));
         }
