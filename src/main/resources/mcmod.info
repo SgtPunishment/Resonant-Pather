@@ -1,7 +1,7 @@
 [
     {
-        "modid": "respath",
-        "name": "Resonant Pather",
+        "modid": "resrandom",
+        "name": "Resonant Randomiser",
         "description": "This is an RF Tool based on the ideas of the Resonant Exchanger and Builders Wand tools.",
         "version": "${version}",
         "mcversion": "1.7.10",

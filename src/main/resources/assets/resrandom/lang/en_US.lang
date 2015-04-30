@@ -1,0 +1,8 @@
+# GUI
+itemGroup.resrandom=Resonant Randomiser
+# Chat
+chat.resrandom.util.configupdate=Updating config...
+chat.resrandom.util.configload=Loaded configuration file!
+chat.resrandom.util.configloadfail=Failed to load configuration file!
+# Items
+item.resrandom.bag.name=Block Bag

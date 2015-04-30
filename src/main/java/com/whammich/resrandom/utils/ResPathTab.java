@@ -1,4 +1,4 @@
-package com.whammich.respather.utils;
+package com.whammich.resrandom.utils;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;

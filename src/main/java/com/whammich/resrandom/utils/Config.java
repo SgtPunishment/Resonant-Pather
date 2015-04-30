@@ -1,4 +1,4 @@
-package com.whammich.respather.utils;
+package com.whammich.resrandom.utils;
 
 import java.io.File;
 import java.util.ArrayList;

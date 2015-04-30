@@ -1,4 +1,4 @@
-package com.whammich.respather.items;
+package com.whammich.resrandom.items;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 
-import com.whammich.respather.Respather;
-import com.whammich.respather.utils.Reference;
-import com.whammich.respather.utils.Register;
+import com.whammich.resrandom.ResRandom;
+import com.whammich.resrandom.utils.Reference;
+import com.whammich.resrandom.utils.Register;
 
 import cpw.mods.fml.common.Optional;
 
@@ -53,7 +53,7 @@ public class ItemBagBase extends Item implements IBauble {
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		if(world.isRemote) {
-			player.openGui(Respather.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
+			player.openGui(ResRandom.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
 		}
 		return super.onItemRightClick(stack, world, player);
 	}

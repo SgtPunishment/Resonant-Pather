@@ -1,4 +1,4 @@
-package com.whammich.respather.items;
+package com.whammich.resrandom.items;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import cofh.api.energy.IEnergyContainerItem;
 
-import com.whammich.respather.utils.Reference;
-import com.whammich.respather.utils.Register;
-import com.whammich.respather.utils.Utils;
+import com.whammich.resrandom.utils.Reference;
+import com.whammich.resrandom.utils.Register;
+import com.whammich.resrandom.utils.Utils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

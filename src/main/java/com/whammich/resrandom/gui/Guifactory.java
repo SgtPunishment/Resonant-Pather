@@ -1,4 +1,4 @@
-package com.whammich.respather.gui;
+package com.whammich.resrandom.gui;
 
 import java.util.Set;
 

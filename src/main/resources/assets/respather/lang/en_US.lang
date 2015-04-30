@@ -1,8 +1,0 @@
-# GUI
-itemGroup.respather=Resonant Pather
-# Chat
-chat.respather.util.configupdate=Updating config...
-chat.respather.util.configload=Loaded configuration file!
-chat.respather.util.configloadfail=Failed to load configuration file!
-# Items
-item.respather.bag.name=Block Bag
