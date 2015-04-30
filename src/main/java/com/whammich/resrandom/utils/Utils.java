@@ -1,5 +1,7 @@
 package com.whammich.resrandom.utils;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.input.Keyboard;
@@ -48,5 +50,14 @@ public class Utils {
 		return LIGHT_GRAY + localize("info.cofh.hold") + " " + YELLOW + ITALIC + localize("info.cofh.shift") + " " + END + LIGHT_GRAY
 				+ localize("info.cofh.forDetails") + END;
 	}
+
+	public static ItemStack setDefaultEnergyTag(ItemStack stack, int energy) {
+        if(stack.stackTagCompound == null) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+
+        stack.stackTagCompound.setInteger("Energy", energy);
+        return stack;
+    }
 	
 }

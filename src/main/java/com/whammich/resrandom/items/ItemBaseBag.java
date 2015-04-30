@@ -28,7 +28,6 @@ public class ItemBaseBag extends Item implements IBauble {
 		super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
-		this.setUnlocalizedName("resrandom.bag.");
 	}
 
 	@Override
@@ -73,4 +72,8 @@ public class ItemBaseBag extends Item implements IBauble {
 		icon[2] = reg.registerIcon(Reference.MOD_ID + ":advancedbag");
 
 	}
+	
+	public String getUnlocalizedName(ItemStack stack) {
+        return super.getUnlocalizedName(stack) + BagType.values()[stack.getItemDamage()].toString();
+    }
 }
