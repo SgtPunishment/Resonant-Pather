@@ -2,14 +2,17 @@ package com.whammich.resrandom.items;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cofh.api.energy.IEnergyContainerItem;
 
+import com.whammich.resrandom.items.types.BagType;
 import com.whammich.resrandom.items.types.ToolType;
 import com.whammich.resrandom.utils.Reference;
 import com.whammich.resrandom.utils.Register;
@@ -20,17 +23,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
-	public static int capacity;// = 16000;
+	
     public static int send = 0;
-    public static int recieve = 0;
+	private IIcon[] icon = new IIcon[BagType.values().length + 1];
 	
     public ItemBaseTool() {
     	super();
     	setUnlocalizedName(Reference.MOD_ID + ".tool.");
     	setCreativeTab(Register.CREATIVE_TAB);
     }
-    
-    
     
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
@@ -68,7 +69,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
         int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-        return 1.0 - ((double) currentEnergy / (double) capacity);
+        return 1.0 - ((double) currentEnergy / (double) ToolType.values()[stack.getItemDamage()].capacity);
     }
 
     @SideOnly(Side.CLIENT)
@@ -82,7 +83,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
         	Utils.setDefaultEnergyTag(stack, 0);
 
         if (Utils.isShiftKeyDown()) {
-            list.add(Utils.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + capacity + " RF");
+            list.add(Utils.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
             list.add(Utils.ORANGE + Utils.localizeFormatted("info.RArm.tooltip.peruse", "" + send) + Utils.END);
         }
     }
@@ -95,7 +96,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
         	Utils.setDefaultEnergyTag(stack, 0);
 
         int energy = stack.stackTagCompound.getInteger("Energy");
-        int energyReceived = Math.min(i, Math.min(capacity - energy, recieve));
+        int energyReceived = Math.min(i, Math.min(ToolType.values()[stack.getItemDamage()].capacity - energy, ToolType.values()[stack.getItemDamage()].recieve));
 
         if (!simulate) {
             energy += energyReceived;
@@ -131,11 +132,18 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
     @Override
     public int getMaxEnergyStored(ItemStack stack) {
-        return capacity;
+        return ToolType.values()[stack.getItemDamage()].capacity;
     }
     
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + ToolType.values()[stack.getItemDamage()].toString();
     }
+    
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister reg) {
+		icon[0] = reg.registerIcon(Reference.MOD_ID + ":creativetool");
+		icon[1] = reg.registerIcon(Reference.MOD_ID + ":redstonetool");
+		icon[2] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
+	}
 
 }

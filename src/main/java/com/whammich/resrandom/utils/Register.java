@@ -13,7 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 
 public class Register {
-	public static ResPathTab CREATIVE_TAB = new ResPathTab();
+	public static ResRandTab CREATIVE_TAB = new ResRandTab();
 	public static Item bagBasic = new ItemBaseBag();
 	public static Item toolBase = new ItemBaseTool();
 	public static void regObj() {

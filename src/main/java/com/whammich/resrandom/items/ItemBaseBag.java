@@ -31,6 +31,7 @@ public class ItemBaseBag extends Item implements IBauble {
 		super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
+		setUnlocalizedName(Reference.MOD_ID + ".bag.");
 	}
 
 	@Override
@@ -73,7 +74,6 @@ public class ItemBaseBag extends Item implements IBauble {
 		icon[0] = reg.registerIcon(Reference.MOD_ID + ":basicbag");
 		icon[1] = reg.registerIcon(Reference.MOD_ID + ":improvedbag");
 		icon[2] = reg.registerIcon(Reference.MOD_ID + ":advancedbag");
-
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {
@@ -82,7 +82,7 @@ public class ItemBaseBag extends Item implements IBauble {
 	
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
-    	for (int i = 1; i < BagType.values().length; ++i) {
+    	for (int i = 0; i < BagType.values().length; ++i) {
             list.add(new ItemStack(item, 1, i));
         }
     }

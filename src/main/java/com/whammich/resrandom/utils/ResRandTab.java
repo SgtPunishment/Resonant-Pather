@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ResPathTab extends CreativeTabs {
+public class ResRandTab extends CreativeTabs {
 
-		public ResPathTab() {
+		public ResRandTab() {
 			super("resrandom");
 		}
 
