@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ResPathTab extends CreativeTabs {
 
 		public ResPathTab() {
-			super("respather");
+			super("resrandom");
 		}
 
 		@Override

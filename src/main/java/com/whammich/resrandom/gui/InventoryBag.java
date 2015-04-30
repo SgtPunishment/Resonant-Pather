@@ -58,7 +58,7 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "respather.bag";
+		return "resrandom.bag";
 	}
 
 	@Override

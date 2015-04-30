@@ -57,7 +57,7 @@ public class Config {
 	@SubscribeEvent
 	public void onConfigChanged(OnConfigChangedEvent event) {
 		if (event.modID.equals(Reference.MOD_ID)) {
-			ModLogger.logInfo(Utils.localize("chat.respather.util.configupdate"));
+			ModLogger.logInfo(Utils.localize("chat.resrandom.util.configupdate"));
 			syncConfig();
 		}
 	}
@@ -69,9 +69,9 @@ public class Config {
 			// Generate Config fields here
 			// newStuff = config.getBoolean("Enable New Stuff", "general", true, "Enables the new blocks, items and recipes");
 			
-			ModLogger.logInfo(Utils.localize("chat.respather.util.configload"));
+			ModLogger.logInfo(Utils.localize("chat.resrandom.util.configload"));
 		} catch (Exception e) {
-			ModLogger.logFatal(Utils.localize("chat.respather.util.configloadfail"));
+			ModLogger.logFatal(Utils.localize("chat.resrandom.util.configloadfail"));
 			e.printStackTrace();
 		} finally {
 			if (config.hasChanged()) {

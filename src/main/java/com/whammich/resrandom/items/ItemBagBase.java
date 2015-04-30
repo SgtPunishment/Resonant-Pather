@@ -22,7 +22,7 @@ public class ItemBagBase extends Item implements IBauble {
 		super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
-		this.setUnlocalizedName("respather.bag");
+		this.setUnlocalizedName("resrandom.bag");
 		this.setTextureName(Reference.MOD_ID + ":bag");
 	}
 	
