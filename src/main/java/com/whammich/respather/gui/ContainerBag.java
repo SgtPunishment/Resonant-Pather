@@ -9,17 +9,17 @@ public class ContainerBag extends Container {
 	
 	public ContainerBag(InventoryPlayer player, InventoryBag bag){
 		
-		this.addSlotToContainer(new Slot(player, 0, 62, 17));
-		this.addSlotToContainer(new Slot(player, 1, 80, 17));
-		this.addSlotToContainer(new Slot(player, 2, 98, 17));
+		this.addSlotToContainer(new Slot(bag, 0, 62, 17));
+		this.addSlotToContainer(new Slot(bag, 1, 80, 17));
+		this.addSlotToContainer(new Slot(bag, 2, 98, 17));
 
-		this.addSlotToContainer(new Slot(player, 3, 62, 35));
-		this.addSlotToContainer(new Slot(player, 4, 80, 35));
-		this.addSlotToContainer(new Slot(player, 5, 98, 35));
+		this.addSlotToContainer(new Slot(bag, 3, 62, 35));
+		this.addSlotToContainer(new Slot(bag, 4, 80, 35));
+		this.addSlotToContainer(new Slot(bag, 5, 98, 35));
 
-		this.addSlotToContainer(new Slot(player, 6, 62, 53));
-		this.addSlotToContainer(new Slot(player, 7, 80, 53));
-		this.addSlotToContainer(new Slot(player, 8, 98, 53));
+		this.addSlotToContainer(new Slot(bag, 6, 62, 53));
+		this.addSlotToContainer(new Slot(bag, 7, 80, 53));
+		this.addSlotToContainer(new Slot(bag, 8, 98, 53));
 		
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {

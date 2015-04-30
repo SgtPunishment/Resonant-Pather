@@ -30,12 +30,6 @@ public class GuiBasicBag extends GuiContainer {
         this.guiTop = (this.height - this.ySize) / 2;
     }
 	
-	@Override
-	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
-		this.drawDefaultBackground();
-		this.drawGuiContainerBackgroundLayer(p_73863_3_, p_73863_1_, p_73863_2_);
-	}
-	
 	public static void bindTexture(ResourceLocation resource) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resource);
     }

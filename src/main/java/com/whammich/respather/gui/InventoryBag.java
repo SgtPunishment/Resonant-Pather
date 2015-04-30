@@ -12,7 +12,7 @@ public class InventoryBag implements IInventory {
 	
 	@Override
 	public int getSizeInventory() {
-		return inventory.length;
+		return 9;
 	}
 
 	@Override
