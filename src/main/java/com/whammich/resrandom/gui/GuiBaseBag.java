@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiBasicBag extends GuiContainer {
+public class GuiBaseBag extends GuiContainer {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/dispenser.png");
 	private static final int GUI_WIDTH = 176;
@@ -17,7 +17,9 @@ public class GuiBasicBag extends GuiContainer {
     
     public Container inventorySlots;
     
-	public GuiBasicBag(InventoryPlayer inventPlayer, InventoryBag inventBag) {
+    public InventoryBag baginvent;
+    
+	public GuiBaseBag(InventoryPlayer inventPlayer, InventoryBag inventBag) {
 		super(new ContainerBag(inventPlayer, inventBag));
 		this.xSize = GUI_WIDTH;
         this.ySize = GUI_HEIGHT;

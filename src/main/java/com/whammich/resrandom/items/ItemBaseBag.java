@@ -16,9 +16,9 @@ import cpw.mods.fml.common.Optional;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles")
 
-public class ItemBagBase extends Item implements IBauble {
+public class ItemBaseBag extends Item implements IBauble {
 
-	public ItemBagBase() {
+	public ItemBaseBag() {
 		super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);

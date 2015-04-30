@@ -19,13 +19,13 @@ import com.whammich.resrandom.utils.Utils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemToolBase extends Item implements IEnergyContainerItem {
+public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
 	public static int capacity = 16000;
     public static int send = 80;
     public static int recieve = 0;
 	
-    public ItemToolBase() {
+    public ItemBaseTool() {
     	super();
     	setUnlocalizedName(Reference.MOD_ID + ".tool.base");
     	setTextureName(Reference.MOD_ID + ":toolbase");
