@@ -138,7 +138,6 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 		icon[0] = reg.registerIcon(Reference.MOD_ID + ":creativetool");
 		icon[1] = reg.registerIcon(Reference.MOD_ID + ":leadstonetool");
 		icon[2] = reg.registerIcon(Reference.MOD_ID + ":hardenedtool");
-		icon[3] = reg.registerIcon(Reference.MOD_ID + ":redstonetool");
-		icon[4] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
+		icon[3] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
 	}
 }
