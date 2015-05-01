@@ -12,7 +12,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cofh.api.energy.IEnergyContainerItem;
 
-import com.whammich.resrandom.items.types.BagType;
 import com.whammich.resrandom.items.types.ToolType;
 import com.whammich.resrandom.utils.Reference;
 import com.whammich.resrandom.utils.Register;
@@ -23,127 +22,127 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
-	
-    public static int send = 0;
-	private IIcon[] icon = new IIcon[BagType.values().length + 1];
-	
-    public ItemBaseTool() {
-    	super();
-    	setUnlocalizedName(Reference.MOD_ID + ".tool.");
-    	setCreativeTab(Register.CREATIVE_TAB);
-    }
-    
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
+	public static int send = 0;
+	private IIcon[] icon = new IIcon[ToolType.values().length + 1];
 
-        if (!player.capabilities.isCreativeMode)
-            extractEnergy(stack, send, false);
+	public ItemBaseTool() {
+		super();
+		setUnlocalizedName(Reference.MOD_ID + ".tool.");
+		setCreativeTab(Register.CREATIVE_TAB);
+	}
 
-        return super.onItemUse(stack, player, world, x, y, z, hitSide, hitX, hitY, hitZ);
-    }
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean held) {
+		if (!player.capabilities.isCreativeMode)
+			extractEnergy(stack, send, false);
 
-    }
+		return super.onItemUse(stack, player, world, x, y, z, hitSide, hitX, hitY, hitZ);
+	}
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void getSubItems(Item item, CreativeTabs tabs, List list) {
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean held) {
 
-        list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, ToolType.CREATIVE.ordinal()), ToolType.CREATIVE.capacity));
-        
-        for (int i = 1; i < ToolType.values().length; ++i) {
-            list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
-            list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), ToolType.values()[i].capacity));
-        }
-    }
+	}
 
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return true;
-    }
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        if (stack.stackTagCompound == null)
-        	Utils.setDefaultEnergyTag(stack, 0);
+		list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, ToolType.CREATIVE.ordinal()), ToolType.CREATIVE.capacity));
 
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
+		for (int i = 1; i < ToolType.values().length; ++i) {
+			list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
+			list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), ToolType.values()[i].capacity));
+		}
+	}
 
-        return 1.0 - ((double) currentEnergy / (double) ToolType.values()[stack.getItemDamage()].capacity);
-    }
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
 
-    @SideOnly(Side.CLIENT)
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean held) {
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
 
-        if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
-            list.add(Utils.shiftForDetails());
+		int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-        if (stack.stackTagCompound == null)
-        	Utils.setDefaultEnergyTag(stack, 0);
+		return 1.0 - ((double) currentEnergy / (double) ToolType.values()[stack.getItemDamage()].capacity);
+	}
 
-        if (Utils.isShiftKeyDown()) {
-            list.add(Utils.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
-            list.add(Utils.ORANGE + Utils.localizeFormatted("info.RArm.tooltip.peruse", "" + send) + Utils.END);
-        }
-    }
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean held) {
 
-    // Energy Stuff
+		if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
+			list.add(Utils.shiftForDetails());
 
-    @Override
-    public int receiveEnergy(ItemStack stack, int i, boolean simulate) {
-        if (stack.stackTagCompound == null)
-        	Utils.setDefaultEnergyTag(stack, 0);
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
 
-        int energy = stack.stackTagCompound.getInteger("Energy");
-        int energyReceived = Math.min(i, Math.min(ToolType.values()[stack.getItemDamage()].capacity - energy, ToolType.values()[stack.getItemDamage()].recieve));
+		if (Utils.isShiftKeyDown()) {
+			list.add(Utils.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
+			// list.add(Utils.ORANGE +
+			// Utils.localizeFormatted("info.RArm.tooltip.peruse", "" + send) +
+			// Utils.END);
+		}
+	}
 
-        if (!simulate) {
-            energy += energyReceived;
-            stack.stackTagCompound.setInteger("Energy", energy);
-        }
+	// Energy Stuff
 
-        return energyReceived;
-    }
+	@Override
+	public int receiveEnergy(ItemStack stack, int i, boolean simulate) {
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
 
-    @Override
-    public int extractEnergy(ItemStack stack, int extract, boolean simulate) {
-        if (stack.stackTagCompound == null)
-        	Utils.setDefaultEnergyTag(stack, 0);
+		int energy = stack.stackTagCompound.getInteger("Energy");
+		int energyReceived = Math.min(i, Math.min(ToolType.values()[stack.getItemDamage()].capacity - energy, ToolType.values()[stack.getItemDamage()].receive));
 
-        int energy = stack.stackTagCompound.getInteger("Energy");
-        int energyExtracted = Math.min(extract, Math.min(energy, send));
+		if (!simulate) {
+			energy += energyReceived;
+			stack.stackTagCompound.setInteger("Energy", energy);
+		}
+		return energyReceived;
+	}
 
-        if (!simulate) {
-            energy -= energyExtracted;
-            stack.stackTagCompound.setInteger("Energy", energy);
-        }
+	@Override
+	public int extractEnergy(ItemStack stack, int extract, boolean simulate) {
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
 
-        return energyExtracted;
-    }
+		int energy = stack.stackTagCompound.getInteger("Energy");
+		int energyExtracted = Math.min(extract, Math.min(energy, send));
 
-    @Override
-    public int getEnergyStored(ItemStack stack) {
-        if (stack.stackTagCompound == null)
-        	Utils.setDefaultEnergyTag(stack, 0);
+		if (!simulate) {
+			energy -= energyExtracted;
+			stack.stackTagCompound.setInteger("Energy", energy);
+		}
+		return energyExtracted;
+	}
 
-        return stack.stackTagCompound.getInteger("Energy");
-    }
+	@Override
+	public int getEnergyStored(ItemStack stack) {
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
+		return stack.stackTagCompound.getInteger("Energy");
+	}
 
-    @Override
-    public int getMaxEnergyStored(ItemStack stack) {
-        return ToolType.values()[stack.getItemDamage()].capacity;
-    }
-    
-    public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + ToolType.values()[stack.getItemDamage()].toString();
-    }
-    
+	@Override
+	public int getMaxEnergyStored(ItemStack stack) {
+		return ToolType.values()[stack.getItemDamage()].capacity;
+	}
+
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName(stack) + ToolType.values()[stack.getItemDamage()].toString();
+	}
+
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
 		icon[0] = reg.registerIcon(Reference.MOD_ID + ":creativetool");
-		icon[1] = reg.registerIcon(Reference.MOD_ID + ":redstonetool");
-		icon[2] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
+		icon[1] = reg.registerIcon(Reference.MOD_ID + ":leadstonetool");
+		icon[2] = reg.registerIcon(Reference.MOD_ID + ":hardenedtool");
+		icon[3] = reg.registerIcon(Reference.MOD_ID + ":redstonetool");
+		icon[4] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
 	}
 
 }
