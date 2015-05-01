@@ -1,4 +1,4 @@
-# Reasonant Randomiser
+# Resonant Randomiser
 
 This is an RF Tool based on the ideas of the Resonant Exchanger and Builders Wand tools.
 
