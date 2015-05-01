@@ -47,8 +47,7 @@ public class Utils {
 	}
 	
 	public static String shiftForDetails() {
-		return LIGHT_GRAY + localize("info.cofh.hold") + " " + YELLOW + ITALIC + localize("info.cofh.shift") + " " + END + LIGHT_GRAY
-				+ localize("info.cofh.forDetails") + END;
+		return LIGHT_GRAY + localize("info.tooltip.hold") + " " + YELLOW + ITALIC + localize("info.tooltip.shift") + " " + END + LIGHT_GRAY + localize("info.tooltip.forDetails") + END;
 	}
 
 	public static ItemStack setDefaultEnergyTag(ItemStack stack, int energy) {

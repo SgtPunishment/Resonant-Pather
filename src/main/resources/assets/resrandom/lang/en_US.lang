@@ -5,4 +5,19 @@ chat.resrandom.util.configupdate=Updating config...
 chat.resrandom.util.configload=Loaded configuration file!
 chat.resrandom.util.configloadfail=Failed to load configuration file!
 # Items
-item.resrandom.bag.name=Block Bag
+item.resrandom.bag.basic.name=Basic Bag
+item.resrandom.bag.improved.name=Improved Bag
+item.resrandom.bag.advanced.name=Advanced Bag
+
+item.resrandom.tool.creative.name=Creative Randomiser
+item.resrandom.tool.leadstone.name=Leadstone Randomiser
+item.resrandom.tool.hardened.name=Hardened Randomiser
+item.resrandom.tool.redstone.name=Redstone Randomiser
+item.resrandom.tool.resonant.name=Resonant Randomiser
+
+# Tooltips
+info.tooltip.bag.slots=Slots
+info.tooltip.tool.charge=Charge
+info.tooltip.hold=Hold
+info.tooltip.shift=Shift
+info.tooltip.forDetails=For Details

@@ -81,10 +81,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 			Utils.setDefaultEnergyTag(stack, 0);
 
 		if (Utils.isShiftKeyDown()) {
-			list.add(Utils.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
-			// list.add(Utils.ORANGE +
-			// Utils.localizeFormatted("info.RArm.tooltip.peruse", "" + send) +
-			// Utils.END);
+			list.add(Utils.localize("info.tooltip.tool.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
 		}
 	}
 
@@ -144,5 +141,4 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 		icon[3] = reg.registerIcon(Reference.MOD_ID + ":redstonetool");
 		icon[4] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
 	}
-
 }

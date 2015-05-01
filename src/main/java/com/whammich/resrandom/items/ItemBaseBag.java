@@ -17,6 +17,7 @@ import com.whammich.resrandom.ResRandom;
 import com.whammich.resrandom.items.types.BagType;
 import com.whammich.resrandom.utils.Reference;
 import com.whammich.resrandom.utils.Register;
+import com.whammich.resrandom.utils.Utils;
 
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
@@ -86,4 +87,19 @@ public class ItemBaseBag extends Item implements IBauble {
             list.add(new ItemStack(item, 1, i));
         }
     }
+    
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean held) {
+
+		if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
+			list.add(Utils.shiftForDetails());
+
+		if (stack.stackTagCompound == null)
+			Utils.setDefaultEnergyTag(stack, 0);
+
+		if (Utils.isShiftKeyDown()) {
+			list.add(Utils.localize("info.tooltip.bag.slots") + ": " + BagType.values()[stack.getItemDamage()].slots);
+		}
+	}
 }

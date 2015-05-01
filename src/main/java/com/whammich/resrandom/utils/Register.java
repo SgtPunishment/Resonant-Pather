@@ -14,7 +14,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Register {
 	public static ResRandTab CREATIVE_TAB = new ResRandTab();
-	public static Item bagBasic = new ItemBaseBag();
+	public static Item bagBase = new ItemBaseBag();
 	public static Item toolBase = new ItemBaseTool();
 	public static void regObj() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(ResRandom.modInstance, new GuiHandler());
@@ -22,7 +22,7 @@ public class Register {
 	}
 	
 	public static void items() {
-		GameRegistry.registerItem(bagBasic, bagBasic.getUnlocalizedName());
+		GameRegistry.registerItem(bagBase, bagBase.getUnlocalizedName());
 		GameRegistry.registerItem(toolBase, toolBase.getUnlocalizedName());
 	}
 }
