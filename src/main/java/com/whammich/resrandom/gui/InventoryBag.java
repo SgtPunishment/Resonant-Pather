@@ -6,38 +6,51 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import com.whammich.resrandom.items.ItemBaseBag;
+import com.whammich.resrandom.utils.ModLogger;
+
 public class InventoryBag implements IInventory {
 
 	public ItemStack stack;
 	public EntityPlayer player;
-	public ItemStack[] inventory;
-	private String bagName;
+	public static final int INV_SIZE = 9;
+	public ItemStack[] bagContents = new ItemStack[INV_SIZE];
+	private String bagName = "resrandom.bag";
+	private final ItemStack invItem;
 
-	public InventoryBag() {
-		inventory = new ItemStack[9];
+	public InventoryBag(ItemStack stack) {
+		
+		invItem = stack;
+		
+		if(!stack.hasTagCompound()){
+			stack.setTagCompound(new NBTTagCompound());
+		}
+		
+		readFromNBT(stack.getTagCompound());
+		
 	}
 	
 	@Override
 	public int getSizeInventory() {
-		return inventory.length;
+		return bagContents.length;
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		return this.inventory[slot];
+		return this.bagContents[slot];
 	}
 
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
-		if (inventory[slot] != null) {
-            if (inventory[slot].stackSize <= amount) {
-                ItemStack itemstack = inventory[slot];
-                inventory[slot] = null;
+		if (bagContents[slot] != null) {
+            if (bagContents[slot].stackSize <= amount) {
+                ItemStack itemstack = bagContents[slot];
+                bagContents[slot] = null;
                 return itemstack;
             }
-            ItemStack itemstack1 = inventory[slot].splitStack(amount);
-            if (inventory[slot].stackSize == 0) {
-                inventory[slot] = null;
+            ItemStack itemstack1 = bagContents[slot].splitStack(amount);
+            if (bagContents[slot].stackSize == 0) {
+                bagContents[slot] = null;
             }
             return itemstack1;
         }
@@ -47,32 +60,29 @@ public class InventoryBag implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int index) {
-		if (this.inventory != null) {
-			ItemStack itemstack = this.inventory[index];
-			this.inventory[index] = null;
-			return itemstack;
-		} else {
-			return null;
-		}
+	public ItemStack getStackInSlotOnClosing(int slot) {
+		ItemStack stack = getStackInSlot(slot);
+		setInventorySlotContents(slot, null);
+		return stack;
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory[slot] = stack;
+		bagContents[slot] = stack;
 		if (stack != null && stack.stackSize > getInventoryStackLimit()){
 			stack.stackSize = getInventoryStackLimit();
 		}
+		markDirty();
 	}
 
 	@Override
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.bagName : "resrandom.bag";
+		return bagName;
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return this.bagName != null && this.bagName.length() > 0;
+		return bagName.length() > 0;
 	}
 	
 	@Override
@@ -81,7 +91,14 @@ public class InventoryBag implements IInventory {
 	}
 
 	@Override
-	public void markDirty() {}
+	public void markDirty() {
+		for (int i = 0; i < getSizeInventory(); ++i){
+			if(getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0){
+				bagContents[i] = null;
+			}
+		}
+		writeToNBT(invItem.getTagCompound());
+	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
@@ -96,32 +113,44 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return true;
+		return !(stack.getItem() instanceof ItemBaseBag);
 	}
 
-	public void readFromNBT(NBTTagCompound tagCompound) {
-		NBTTagList tagList = tagCompound.getTagList("Items", 10);
-		this.inventory = new ItemStack[this.getSizeInventory()];
-		for (int i = 0; i < tagList.tagCount(); ++i) {
-			NBTTagCompound tabCompound1 = tagList.getCompoundTagAt(i);
-			byte byte0 = tabCompound1.getByte("Slot");
-			if (byte0 >= 0 && byte0 < this.inventory.length) {
-				this.inventory[byte0] = ItemStack.loadItemStackFromNBT(tabCompound1);
+	public void readFromNBT(NBTTagCompound compound) {
+		NBTTagList items = compound.getTagList("Items", 10);
+		
+		//this.bagContents = new ItemStack[this.getSizeInventory()];
+		
+		for (int i = 0; i < items.tagCount(); ++i) {
+			
+			NBTTagCompound item = items.getCompoundTagAt(i);
+			
+			int slot = item.getInteger("Slot");
+			
+			if (slot >= 0 && slot < this.bagContents.length) {
+				
+				this.bagContents[slot] = ItemStack.loadItemStackFromNBT(item);
+				ModLogger.logInfo("Reading Item: " + item.toString());
 			}
 		}
 	}
 
 	public void writeToNBT(NBTTagCompound tagCompound) {
-		NBTTagList tagList = new NBTTagList();
-		for (int i = 0; i < this.inventory.length; ++i) {
-			if (this.inventory[i] != null) {
-				NBTTagCompound tagCompound1 = new NBTTagCompound();
-				tagCompound1.setByte("Slot", (byte) i);
-				this.inventory[i].writeToNBT(tagCompound1);
-				tagList.appendTag(tagCompound1);
+		NBTTagList items = new NBTTagList();
+		
+		for (int i = 0; i < getSizeInventory(); ++i) {
+			
+			if (getStackInSlot(i) != null) {
+				
+				NBTTagCompound item = new NBTTagCompound();
+				item.setInteger("Slot", i);
+				
+				getStackInSlot(i).writeToNBT(item);
+				items.appendTag(item);
 			}
 		}
-		tagCompound.setTag("Items", tagList);
+		ModLogger.logInfo("Saving Item: " + items.toString());
+		tagCompound.setTag("Items", items);
 	}
 	
 }

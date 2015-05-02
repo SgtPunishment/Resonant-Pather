@@ -62,12 +62,11 @@ public class ItemBaseBag extends Item implements IBauble {
 	public void onWornTick(ItemStack stack, EntityLivingBase entity) {
 	}
 
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (world.isRemote) {
-			player.openGui(ResRandom.modInstance, 0, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (!world.isRemote) {
+			player.openGui(ResRandom.modInstance, 0, world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
-		return super.onItemRightClick(stack, world, player);
+		return stack;
 	}
 
 	@SideOnly(Side.CLIENT)

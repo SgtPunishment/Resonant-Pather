@@ -5,7 +5,7 @@ import java.util.Locale;
 public enum BagType {
 
 	BASIC(9),
-	IMPROVED(27), // Get better name
+	IMPROVED(27),
 	ADVANCED(54);
 	
 	public final int slots;
