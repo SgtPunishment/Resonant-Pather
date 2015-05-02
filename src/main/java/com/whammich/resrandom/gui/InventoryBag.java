@@ -28,6 +28,8 @@ public class InventoryBag implements IInventory {
 		
 		readFromNBT(stack.getTagCompound());
 		
+		ModLogger.logInfo("01: Reading Stack: " + stack.toString());
+
 	}
 	
 	@Override
@@ -42,21 +44,16 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
-		if (bagContents[slot] != null) {
-            if (bagContents[slot].stackSize <= amount) {
-                ItemStack itemstack = bagContents[slot];
-                bagContents[slot] = null;
-                return itemstack;
-            }
-            ItemStack itemstack1 = bagContents[slot].splitStack(amount);
-            if (bagContents[slot].stackSize == 0) {
-                bagContents[slot] = null;
-            }
-            return itemstack1;
-        }
-        else {
-            return null;
-        }
+		ItemStack stack = getStackInSlot(slot);
+		if(stack != null) {
+			if(stack.stackSize > amount) {
+				stack = stack.splitStack(amount);
+				markDirty();
+			} else {
+				setInventorySlotContents(slot, null);
+			}
+		}
+		return stack;
 	}
 
 	@Override
@@ -97,6 +94,9 @@ public class InventoryBag implements IInventory {
 				bagContents[i] = null;
 			}
 		}
+//		NBTTagCompound tag = new NBTTagCompound();
+//		writeToNBT(tag);
+//		invItem.setTagCompound(tag);
 		writeToNBT(invItem.getTagCompound());
 	}
 
@@ -118,19 +118,20 @@ public class InventoryBag implements IInventory {
 
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList items = compound.getTagList("Items", 10);
-		
-		//this.bagContents = new ItemStack[this.getSizeInventory()];
-		
 		for (int i = 0; i < items.tagCount(); ++i) {
 			
 			NBTTagCompound item = items.getCompoundTagAt(i);
+			ModLogger.logInfo("02: Reading Item: " + item.toString());
 			
 			int slot = item.getInteger("Slot");
+			ModLogger.logInfo("03: Reading Item: " + item.toString());
 			
 			if (slot >= 0 && slot < this.bagContents.length) {
+				ModLogger.logInfo("04: Reading Item: " + item.toString());
 				
 				this.bagContents[slot] = ItemStack.loadItemStackFromNBT(item);
-				ModLogger.logInfo("Reading Item: " + item.toString());
+				ModLogger.logInfo("05: Reading Item: " + item.toString());
+
 			}
 		}
 	}
