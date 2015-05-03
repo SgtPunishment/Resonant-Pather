@@ -31,6 +31,7 @@ public class ContainerBag extends Container {
 		for (i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
 		}
+
 	}
 
 	@Override
@@ -93,11 +94,12 @@ public class ContainerBag extends Container {
 		}
 		return super.slotClick(slot, button, flag, player);
 	}
-	
-	@Override
-	public void onContainerClosed(EntityPlayer player)
-	{
-		super.onContainerClosed(EntityPlayer player);
-		inventory.markDirty();
-	}
+@Override
+    public void onContainerClosed(EntityPlayer player)
+    {
+        super.onContainerClosed(player);
+        inventory.save();
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, inventory.invItem);
+    }
+
 }

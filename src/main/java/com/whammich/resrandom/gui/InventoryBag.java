@@ -12,12 +12,11 @@ import com.whammich.resrandom.utils.ModLogger;
 
 public class InventoryBag implements IInventory {
 
-	public ItemStack stack;
 	public EntityPlayer player;
 	public static final int INV_SIZE = 9;
 	public ItemStack[] bagContents = new ItemStack[INV_SIZE];
 	private String bagName = "resrandom.bag";
-	private final ItemStack invItem;
+	public final ItemStack invItem;
 
 	public InventoryBag(ItemStack stack) {
 		invItem = stack;
@@ -44,7 +43,6 @@ public class InventoryBag implements IInventory {
 		if(stack != null) {
 			if(stack.stackSize > amount) {
 				stack = stack.splitStack(amount);
-				markDirty();
 			} else {
 				setInventorySlotContents(slot, null);
 			}
@@ -61,11 +59,10 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		bagContents[slot] = stack;
 		if (stack != null && stack.stackSize > getInventoryStackLimit()){
 			stack.stackSize = getInventoryStackLimit();
 		}
-		markDirty();
+        bagContents[slot] = stack;
 	}
 
 	@Override
@@ -85,17 +82,7 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public void markDirty() {
-		for (int i = 0; i < getSizeInventory(); ++i){
-			if(getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0){
-				setInventorySlotContents(i, null);
-				//bagContents[i] = null;
-			}
-		}
-//		NBTTagCompound tag = new NBTTagCompound();
-//		writeToNBT(tag);
-//		invItem.setTagCompound(tag);
-		writeToNBT(invItem.getTagCompound());
-		ModLogger.logInfo("markDirt(): " + invItem.getTagCompound());
+
 	}
 
 	@Override
@@ -147,5 +134,21 @@ public class InventoryBag implements IInventory {
 		ModLogger.logInfo("Saving Item: " + items.toString());
 		tagCompound.setTag("Items", items);
 	}
-	
+
+    public void save()
+    {
+        for (int i = 0; i < getSizeInventory(); ++i)
+        {
+            if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
+            {
+                setInventorySlotContents(i, null);
+                //bagContents[i] = null;
+            }
+        }
+//		NBTTagCompound tag = new NBTTagCompound();
+//		writeToNBT(tag);
+//		invItem.setTagCompound(tag);
+        writeToNBT(invItem.getTagCompound());
+        ModLogger.logInfo("markDirt(): " + invItem.getTagCompound());
+    }
 }
