@@ -15,7 +15,6 @@ import baubles.api.IBauble;
 
 import com.whammich.resrandom.ResRandom;
 import com.whammich.resrandom.items.types.BagType;
-import com.whammich.resrandom.utils.ModLogger;
 import com.whammich.resrandom.utils.Reference;
 import com.whammich.resrandom.utils.Register;
 import com.whammich.resrandom.utils.Utils;
@@ -65,8 +64,7 @@ public class ItemBaseBag extends Item implements IBauble {
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (!world.isRemote) {
-			player.openGui(ResRandom.modInstance, 0, world, (int) player.posX, (int) player.posY, (int) player.posZ);
-			ModLogger.logInfo("00: Open Bag: " + stack.stackTagCompound);
+			player.openGui(ResRandom.modInstance, stack.getItemDamage(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
 		return stack;
 	}

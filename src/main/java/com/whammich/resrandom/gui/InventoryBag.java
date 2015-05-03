@@ -8,23 +8,30 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
 import com.whammich.resrandom.items.ItemBaseBag;
+import com.whammich.resrandom.items.types.BagType;
 import com.whammich.resrandom.utils.ModLogger;
 
 public class InventoryBag implements IInventory {
 
 	public EntityPlayer player;
-	public static final int INV_SIZE = 9;
-	public ItemStack[] bagContents = new ItemStack[INV_SIZE];
+	public static int INV_SIZE;
+	public ItemStack[] bagContents;
 	private String bagName = "resrandom.bag";
 	public final ItemStack invItem;
 
-	public InventoryBag(ItemStack stack) {
+	public BagType bType;
+	
+	public InventoryBag(BagType type, ItemStack stack) {
+		this.bType = type;
 		invItem = stack;
+		INV_SIZE = bType.slots;
+		this.bagContents = new ItemStack[INV_SIZE];
+		
 		if(!stack.hasTagCompound()){
 			stack.setTagCompound(new NBTTagCompound());
 		}
 		readFromNBT(stack.getTagCompound());
-		ModLogger.logInfo("01: Reading Stack: " + stack.toString());
+		ModLogger.logDebug("01: Reading Stack: " + stack.toString());
 	}
 	
 	@Override
@@ -105,13 +112,13 @@ public class InventoryBag implements IInventory {
 		NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < items.tagCount(); ++i) {
 			NBTTagCompound item = items.getCompoundTagAt(i);
-			ModLogger.logInfo("Pre-Slot: " + i + " :" + item.toString());
+			ModLogger.logDebug("Pre-Slot: " + i + " :" + item.toString());
 			int slot = item.getInteger("Slot");
-			ModLogger.logInfo("Post-Slot: " + i + " :" + item.toString());			
+			ModLogger.logDebug("Post-Slot: " + i + " :" + item.toString());			
 			if (slot >= 0 && slot < this.bagContents.length) {
-				ModLogger.logInfo("If-Slot: " + i + " :" + item.toString());
+				ModLogger.logDebug("If-Slot: " + i + " :" + item.toString());
 				this.bagContents[slot] = ItemStack.loadItemStackFromNBT(item);
-				ModLogger.logInfo("Done-Slot: " + i + " :" + item.toString());
+				ModLogger.logDebug("Done-Slot: " + i + " :" + item.toString());
 			}
 		}
 	}
@@ -120,18 +127,18 @@ public class InventoryBag implements IInventory {
 		NBTTagList items = new NBTTagList();
 		
 		for (int i = 0; i < getSizeInventory(); ++i) {
-			ModLogger.logInfo("Null-Slot: " + i + " :" + items.toString());
+			ModLogger.logDebug("Null-Slot: " + i + " :" + items.toString());
 			if (getStackInSlot(i) != null) {
-				ModLogger.logInfo("Tag-Slot: " + i + " :" + items.toString());
+				ModLogger.logDebug("Tag-Slot: " + i + " :" + items.toString());
 				NBTTagCompound item = new NBTTagCompound();
 				item.setInteger("Slot", i);
-				ModLogger.logInfo("Pre-Slot: " + i + " :" + items.toString());
+				ModLogger.logDebug("Pre-Slot: " + i + " :" + items.toString());
 				getStackInSlot(i).writeToNBT(item);
 				items.appendTag(item);
-				ModLogger.logInfo("Post-Slot: " + i + " :" + items.toString());
+				ModLogger.logDebug("Post-Slot: " + i + " :" + items.toString());
 			}
 		}
-		ModLogger.logInfo("Saving Item: " + items.toString());
+		ModLogger.logDebug("Saving Item: " + items.toString());
 		tagCompound.setTag("Items", items);
 	}
 
@@ -142,13 +149,9 @@ public class InventoryBag implements IInventory {
             if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
             {
                 setInventorySlotContents(i, null);
-                //bagContents[i] = null;
             }
         }
-//		NBTTagCompound tag = new NBTTagCompound();
-//		writeToNBT(tag);
-//		invItem.setTagCompound(tag);
         writeToNBT(invItem.getTagCompound());
-        ModLogger.logInfo("markDirt(): " + invItem.getTagCompound());
+        ModLogger.logDebug("markDirt(): " + invItem.getTagCompound());
     }
 }
