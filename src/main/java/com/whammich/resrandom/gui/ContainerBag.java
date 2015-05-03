@@ -1,7 +1,5 @@
 package com.whammich.resrandom.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -33,7 +31,7 @@ public class ContainerBag extends Container {
 		for (i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(player, i, 8 + i * 18, 142));
 		}
-        
+
 	}
 
 	@Override
