@@ -1,4 +1,4 @@
-package com.whammich.resrandom.gui;
+package com.whammich.resrandom.gui.config;
 
 import java.util.ArrayList;
 import java.util.List;

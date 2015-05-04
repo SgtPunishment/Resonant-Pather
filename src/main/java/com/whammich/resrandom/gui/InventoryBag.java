@@ -74,7 +74,7 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return bagName;
+		return invItem.getDisplayName();
 	}
 
 	@Override

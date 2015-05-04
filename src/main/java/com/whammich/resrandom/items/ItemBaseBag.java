@@ -26,67 +26,50 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles")
 public class ItemBaseBag extends Item implements IBauble {
 
-	private IIcon[] icon = new IIcon[BagType.values().length + 1];
+	IIcon[] icon = new IIcon[BagType.values().length];
 
 	public ItemBaseBag() {
 		super();
-		this.maxStackSize = 1;
-		this.setCreativeTab(Register.CREATIVE_TAB);
+
+		setCreativeTab(Register.CREATIVE_TAB);
 		setUnlocalizedName(Reference.MOD_ID + ".bag.");
-	}
-
-	@Override
-	public boolean canEquip(ItemStack stack, EntityLivingBase entity) {
-		return true;
-	}
-
-	@Override
-	public boolean canUnequip(ItemStack stack, EntityLivingBase entity) {
-		return true;
-	}
-
-	@Override
-	public BaubleType getBaubleType(ItemStack stack) {
-		return BaubleType.BELT;
-	}
-
-	@Override
-	public void onEquipped(ItemStack stack, EntityLivingBase entity) {
-	}
-
-	@Override
-	public void onUnequipped(ItemStack stack, EntityLivingBase entity) {
-	}
-
-	@Override
-	public void onWornTick(ItemStack stack, EntityLivingBase entity) {
+        setMaxStackSize(1);
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!world.isRemote) {
+		if (!world.isRemote && isValidBag(stack))
 			player.openGui(ResRandom.modInstance, stack.getItemDamage(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
-		}
+
 		return stack;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
-    	for (int i = 0; i < BagType.values().length; ++i) {
+    	for (int i = 0; i < BagType.values().length; i++)
     		icon[i] = reg.registerIcon(Reference.MOD_ID + ":" + BagType.values()[i].toString() + "bag");
-        }
 	}
-	
-	public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + BagType.values()[stack.getItemDamage()].toString();
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int meta) {
+        if (isValidBag(new ItemStack(this, 1, meta)))
+            return icon[meta];
+        else
+            return itemIcon;
     }
-	
+
+	public String getUnlocalizedName(ItemStack stack) {
+        if (isValidBag(stack))
+            return super.getUnlocalizedName(stack) + BagType.values()[stack.getItemDamage()].toString();
+        else
+            return super.getUnlocalizedName(stack) + "fallback";
+    }
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
-    	for (int i = 0; i < BagType.values().length; ++i) {
+    	for (int i = 0; i < BagType.values().length; ++i)
             list.add(new ItemStack(item, 1, i));
-        }
     }
-    
+
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean held) {
@@ -95,7 +78,43 @@ public class ItemBaseBag extends Item implements IBauble {
 			list.add(Utils.shiftForDetails());
 
 		if (Utils.isShiftKeyDown()) {
-			list.add(Utils.localize("info.tooltip.bag.slots") + ": " + BagType.values()[stack.getItemDamage()].slots);
-		}
+            if (isValidBag(stack))
+                list.add(String.format(Utils.localize("info.tooltip.bag.slots"), BagType.values()[stack.getItemDamage()].slots));
+            else
+                list.add(Utils.localize("info.tooltip.null"));
+        }
 	}
+
+    public boolean isValidBag(ItemStack stack) {
+        return stack.getItemDamage() < BagType.values().length;
+    }
+
+    // Bauble API
+
+    @Override
+    public boolean canEquip(ItemStack stack, EntityLivingBase entity) {
+        return true;
+    }
+
+    @Override
+    public boolean canUnequip(ItemStack stack, EntityLivingBase entity) {
+        return true;
+    }
+
+    @Override
+    public BaubleType getBaubleType(ItemStack stack) {
+        return BaubleType.BELT;
+    }
+
+    @Override
+    public void onEquipped(ItemStack stack, EntityLivingBase entity) {
+    }
+
+    @Override
+    public void onUnequipped(ItemStack stack, EntityLivingBase entity) {
+    }
+
+    @Override
+    public void onWornTick(ItemStack stack, EntityLivingBase entity) {
+    }
 }

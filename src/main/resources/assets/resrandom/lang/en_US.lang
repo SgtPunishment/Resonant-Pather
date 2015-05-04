@@ -15,8 +15,9 @@ item.resrandom.tool.hardened.name=Hardened Randomiser
 item.resrandom.tool.resonant.name=Resonant Randomiser
 
 # Tooltips
-info.tooltip.bag.slots=Slots
+info.tooltip.bag.slots=Slots: %s
 info.tooltip.tool.charge=Charge
+info.tooltip.null=Null Tooltip Please Ignore
 info.tooltip.hold=Hold
 info.tooltip.shift=Shift
 info.tooltip.forDetails=For Details

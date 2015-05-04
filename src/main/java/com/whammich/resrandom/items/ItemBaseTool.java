@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -23,25 +24,22 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
 	public static int send = 0;
-	private IIcon[] icon = new IIcon[ToolType.values().length + 1];
+	IIcon[] icon = new IIcon[ToolType.values().length];
 
 	public ItemBaseTool() {
 		super();
+
 		setUnlocalizedName(Reference.MOD_ID + ".tool.");
-		setCreativeTab(Register.CREATIVE_TAB);
-	}
+        setCreativeTab(Register.CREATIVE_TAB);
+        setMaxStackSize(1);
+    }
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
-		if (!player.capabilities.isCreativeMode)
+		if (!player.capabilities.isCreativeMode && isValidTool(stack))
 			extractEnergy(stack, send, false);
 
 		return super.onItemUse(stack, player, world, x, y, z, hitSide, hitX, hitY, hitZ);
-	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean held) {
-
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -51,23 +49,18 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
 		for (int i = 1; i < ToolType.values().length; ++i) {
 			list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
-			list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), ToolType.values()[i].capacity));
+			list.add(Utils.setDefaultEnergyTag(new ItemStack(item, 1, i), getMaxEnergyStored(new ItemStack(item, 1, i))));
 		}
 	}
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		return true;
+		return stack.getItemDamage() != ToolType.CREATIVE.ordinal();
 	}
 
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
-		if (stack.stackTagCompound == null)
-			Utils.setDefaultEnergyTag(stack, 0);
-
-		int currentEnergy = stack.stackTagCompound.getInteger("Energy");
-
-		return 1.0 - ((double) currentEnergy / (double) ToolType.values()[stack.getItemDamage()].capacity);
+		return 1.0 - ((double) getEnergyStored(stack) / (double) getMaxEnergyStored(stack));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -77,13 +70,45 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 		if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
 			list.add(Utils.shiftForDetails());
 
-		if (stack.stackTagCompound == null)
-			Utils.setDefaultEnergyTag(stack, 0);
-
 		if (Utils.isShiftKeyDown()) {
-			list.add(Utils.localize("info.tooltip.tool.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + ToolType.values()[stack.getItemDamage()].capacity + " RF");
-		}
+            if (isValidTool(stack))
+                list.add(Utils.localize("info.tooltip.tool.charge") + ": " + getEnergyStored(stack) + " / " + getMaxEnergyStored(stack) + " RF");
+            else
+                list.add(Utils.localize("info.tooltip.null"));
+        }
 	}
+
+    public String getUnlocalizedName(ItemStack stack) {
+        if (isValidTool(stack))
+            return super.getUnlocalizedName(stack) + ToolType.values()[stack.getItemDamage()].toString();
+        else
+            return super.getUnlocalizedName(stack) + "fallback";
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister reg) {
+        for (int i = 0; i < ToolType.values().length; i++)
+            icon[i] = reg.registerIcon(Reference.MOD_ID + ":" + ToolType.values()[i].toString() + "tool");
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int meta) {
+        if (isValidTool(new ItemStack(this, 1, meta)))
+            return icon[meta];
+        else
+            return itemIcon;
+    }
+
+    public EnumRarity getRarity(ItemStack stack) {
+        if (isValidTool(stack))
+            return ToolType.values()[stack.getItemDamage()].rarity;
+
+        return EnumRarity.common;
+    }
+
+    private boolean isValidTool(ItemStack stack) {
+        return stack.getItemDamage() < ToolType.values().length;
+    }
 
 	// Energy Stuff
 
@@ -121,23 +146,12 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 	public int getEnergyStored(ItemStack stack) {
 		if (stack.stackTagCompound == null)
 			Utils.setDefaultEnergyTag(stack, 0);
+
 		return stack.stackTagCompound.getInteger("Energy");
 	}
 
 	@Override
 	public int getMaxEnergyStored(ItemStack stack) {
 		return ToolType.values()[stack.getItemDamage()].capacity;
-	}
-
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + ToolType.values()[stack.getItemDamage()].toString();
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister reg) {
-		icon[0] = reg.registerIcon(Reference.MOD_ID + ":creativetool");
-		icon[1] = reg.registerIcon(Reference.MOD_ID + ":leadstonetool");
-		icon[2] = reg.registerIcon(Reference.MOD_ID + ":hardenedtool");
-		icon[3] = reg.registerIcon(Reference.MOD_ID + ":resonanttool");
 	}
 }
