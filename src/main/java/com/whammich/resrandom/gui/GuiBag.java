@@ -16,6 +16,7 @@ public class GuiBag extends GuiContainer {
 	public Container inventorySlots;
 
 	public InventoryBag inventoryBag;
+	
 	private int inventoryRows;
 	
 	public GuiBag(ContainerBag containerBag) {
