@@ -71,9 +71,9 @@ public class ItemBaseBag extends Item implements IBauble {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
-		icon[0] = reg.registerIcon(Reference.MOD_ID + ":basicbag");
-		icon[1] = reg.registerIcon(Reference.MOD_ID + ":improvedbag");
-		icon[2] = reg.registerIcon(Reference.MOD_ID + ":advancedbag");
+    	for (int i = 0; i < BagType.values().length; ++i) {
+    		icon[i] = reg.registerIcon(Reference.MOD_ID + ":" + BagType.values()[i].toString() + "bag");
+        }
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {

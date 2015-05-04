@@ -17,22 +17,11 @@ public class GuiHandler implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		
-		switch(ID) {
-		case 0: return new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[0], player.getHeldItem()));
-		case 1: return new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[1], player.getHeldItem()));
-		case 2: return new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[2], player.getHeldItem()));
-		}
-		return null; 
+		return new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[ID], player.getHeldItem()));
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch(ID) {
-		case 0: return new GuiBag((ContainerBag) new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[0],player.getHeldItem())));
-		case 1: return new GuiBag((ContainerBag) new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[1],player.getHeldItem())));
-		case 2: return new GuiBag((ContainerBag) new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[2],player.getHeldItem())));
-		}
-		return null;
+		return new GuiBag((ContainerBag) new ContainerBag(player, player.inventory, new InventoryBag(BagType.values()[ID], player.getHeldItem())));
 	}
 }
