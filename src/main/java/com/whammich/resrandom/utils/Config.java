@@ -45,11 +45,11 @@ public class Config {
 	
 	public static void load(FMLPreInitializationEvent event) {
 		FMLCommonHandler.instance().bus().register(new Config());
-		configDirectory = new File(event.getModConfigurationDirectory() + "/ResonantPather/");
+		configDirectory = new File(event.getModConfigurationDirectory() + "/Whammich/");
 		if (!configDirectory.exists()) {
 			configDirectory.mkdir();
 		}
-		File configFile = new File(configDirectory, "config.cfg");
+		File configFile = new File(configDirectory, "Resonant-Randomiser.cfg");
 		config = new Configuration(configFile);
 		syncConfig();
 	}

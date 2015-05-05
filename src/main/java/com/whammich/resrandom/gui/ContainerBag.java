@@ -14,6 +14,7 @@ public class ContainerBag extends Container {
 	private static final int INV_START = InventoryBag.INV_SIZE, INV_END = INV_START + 26,
 			HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
+	@SuppressWarnings("unused")
 	public ContainerBag(EntityPlayer par1Player, InventoryPlayer player, InventoryBag inventoryBag) {
 		
 		this.inventory = inventoryBag;
