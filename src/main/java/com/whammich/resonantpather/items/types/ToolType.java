@@ -8,7 +8,7 @@ public enum ToolType {
 
 	CREATIVE(0, 100000000, EnumRarity.epic), 	    // Cannot Charge, 100,000,000 RF Capacity
 	LEADSTONE(200, 80000, EnumRarity.common),		// 200 RF/t Receive, 80,000 RF Capacity
-	HARDENED(800, 400000, EnumRarity.uncommon),		// 800 RF/t Receive, 400,000 RF Capacity
+	HARDENED(800, 400000, EnumRarity.common),		// 800 RF/t Receive, 400,000 RF Capacity
 	REDSTONE(8000, 4000000, EnumRarity.uncommon),
 	RESONANT(32000, 20000000, EnumRarity.rare);	    // 32,000 RF/t Receive, 20,000,000 RF Capacity
 

@@ -79,9 +79,9 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 
 		if (Utils.isShiftKeyDown()) {
             if (isValidTool(stack))
-                list.add(Utils.localize("info.tooltip.tool.charge") + ": " + getEnergyStored(stack) + " / " + getMaxEnergyStored(stack) + " RF");
+                list.add(Utils.localize("info.resonantpather.tooltip.tool.charge") + ": " + getEnergyStored(stack) + " / " + getMaxEnergyStored(stack) + " RF");
             else
-                list.add(Utils.localize("info.tooltip.null"));
+                list.add(Utils.localize("info.resonantpather.tooltip.null"));
         }
 	}
 

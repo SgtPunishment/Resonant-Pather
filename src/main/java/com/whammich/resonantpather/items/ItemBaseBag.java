@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -79,14 +80,22 @@ public class ItemBaseBag extends Item implements IBauble {
 
 		if (Utils.isShiftKeyDown()) {
             if (isValidBag(stack))
-                list.add(String.format(Utils.localize("info.tooltip.bag.slots"), BagType.values()[stack.getItemDamage()].slots));
+                list.add(String.format(Utils.localize("info.resonantpather.tooltip.bag.slots"), BagType.values()[stack.getItemDamage()].slots));
             else
-                list.add(Utils.localize("info.tooltip.null"));
+                list.add(Utils.localize("info.resonantpather.tooltip.null"));
         }
 	}
 
     public boolean isValidBag(ItemStack stack) {
         return stack.getItemDamage() < BagType.values().length;
+    }
+    
+    
+    public EnumRarity getRarity(ItemStack stack) {
+        if (isValidBag(stack))
+            return BagType.values()[stack.getItemDamage()].rarity;
+
+        return EnumRarity.common;
     }
 
     // Bauble API

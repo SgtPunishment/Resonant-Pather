@@ -47,7 +47,7 @@ public class Utils {
 	}
 	
 	public static String shiftForDetails() {
-		return LIGHT_GRAY + localize("info.tooltip.hold") + " " + YELLOW + ITALIC + localize("info.tooltip.shift") + " " + END + LIGHT_GRAY + localize("info.tooltip.forDetails") + END;
+		return LIGHT_GRAY + localize("info.resonantpather.tooltip.hold") + " " + YELLOW + ITALIC + localize("info.resonantpather.tooltip.shift") + " " + END + LIGHT_GRAY + localize("info.resonantpather.tooltip.forDetails") + END;
 	}
 
 	public static ItemStack setDefaultEnergyTag(ItemStack stack, int energy) {
