@@ -1,5 +1,5 @@
 # GUI
-itemGroup.resonantpather=Resonant Randomiser
+itemGroup.resonantpather=Resonant Pather
 # Chat
 chat.resonantpather.util.configupdate=Updating config...
 chat.resonantpather.util.configload=Loaded configuration file!
@@ -9,10 +9,11 @@ item.resonantpather.bag.basic.name=Basic Bag
 item.resonantpather.bag.improved.name=Improved Bag
 item.resonantpather.bag.advanced.name=Advanced Bag
 
-item.resonantpather.tool.creative.name=Creative Randomiser
-item.resonantpather.tool.leadstone.name=Leadstone Randomiser
-item.resonantpather.tool.hardened.name=Hardened Randomiser
-item.resonantpather.tool.resonant.name=Resonant Randomiser
+item.resonantpather.tool.creative.name=Creative Pather
+item.resonantpather.tool.leadstone.name=Leadstone Pather
+item.resonantpather.tool.hardened.name=Hardened Pather
+item.resonantpather.tool.redstone.name=Redstone Pather
+item.resonantpather.tool.resonant.name=Resonant Pather
 
 # Tooltips
 info.tooltip.bag.slots=Slots: %s
