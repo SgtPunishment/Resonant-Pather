@@ -22,7 +22,7 @@ public class ResonantPatherTab extends CreativeTabs {
 		
 		@Override
 		public ItemStack getIconItemStack() {
-			return getStackItem(BagType.ADVANCED);
+			return getStackItem(BagType.RESONANT);
 		}
 
 		@Override
