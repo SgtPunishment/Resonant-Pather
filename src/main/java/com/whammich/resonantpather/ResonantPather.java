@@ -1,8 +1,8 @@
-package com.whammich.resrandom;
+package com.whammich.resonantpather;
 
-import com.whammich.resrandom.utils.Config;
-import com.whammich.resrandom.utils.Reference;
-import com.whammich.resrandom.utils.Register;
+import com.whammich.resonantpather.utils.Config;
+import com.whammich.resonantpather.utils.Reference;
+import com.whammich.resonantpather.utils.Register;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -18,9 +18,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 		guiFactory = Reference.GuiFactory_class
 	)
 
-public class ResRandom {
+public class ResonantPather {
 	@Instance(Reference.MOD_ID)
-	public static ResRandom modInstance;
+	public static ResonantPather modInstance;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

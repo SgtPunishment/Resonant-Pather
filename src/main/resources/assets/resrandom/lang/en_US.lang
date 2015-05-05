@@ -1,18 +1,18 @@
 # GUI
-itemGroup.resrandom=Resonant Randomiser
+itemGroup.resonantpather=Resonant Randomiser
 # Chat
-chat.resrandom.util.configupdate=Updating config...
-chat.resrandom.util.configload=Loaded configuration file!
-chat.resrandom.util.configloadfail=Failed to load configuration file!
+chat.resonantpather.util.configupdate=Updating config...
+chat.resonantpather.util.configload=Loaded configuration file!
+chat.resonantpather.util.configloadfail=Failed to load configuration file!
 # Items
-item.resrandom.bag.basic.name=Basic Bag
-item.resrandom.bag.improved.name=Improved Bag
-item.resrandom.bag.advanced.name=Advanced Bag
+item.resonantpather.bag.basic.name=Basic Bag
+item.resonantpather.bag.improved.name=Improved Bag
+item.resonantpather.bag.advanced.name=Advanced Bag
 
-item.resrandom.tool.creative.name=Creative Randomiser
-item.resrandom.tool.leadstone.name=Leadstone Randomiser
-item.resrandom.tool.hardened.name=Hardened Randomiser
-item.resrandom.tool.resonant.name=Resonant Randomiser
+item.resonantpather.tool.creative.name=Creative Randomiser
+item.resonantpather.tool.leadstone.name=Leadstone Randomiser
+item.resonantpather.tool.hardened.name=Hardened Randomiser
+item.resonantpather.tool.resonant.name=Resonant Randomiser
 
 # Tooltips
 info.tooltip.bag.slots=Slots: %s

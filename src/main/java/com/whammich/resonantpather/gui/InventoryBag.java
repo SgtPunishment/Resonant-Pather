@@ -1,4 +1,4 @@
-package com.whammich.resrandom.gui;
+package com.whammich.resonantpather.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -7,16 +7,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-import com.whammich.resrandom.items.ItemBaseBag;
-import com.whammich.resrandom.items.types.BagType;
-import com.whammich.resrandom.utils.ModLogger;
+import com.whammich.resonantpather.items.ItemBaseBag;
+import com.whammich.resonantpather.items.types.BagType;
+import com.whammich.resonantpather.utils.ModLogger;
 
 public class InventoryBag implements IInventory {
 
 	public EntityPlayer player;
 	public static int INV_SIZE;
 	public ItemStack[] bagContents;
-	private String bagName = "resrandom.bag";
+	private String bagName = "resonantpather.bag";
 	public final ItemStack invItem;
 
 	public BagType bType;

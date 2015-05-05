@@ -1,4 +1,4 @@
-package com.whammich.resrandom.items;
+package com.whammich.resonantpather.items;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import net.minecraft.world.World;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 
-import com.whammich.resrandom.ResRandom;
-import com.whammich.resrandom.items.types.BagType;
-import com.whammich.resrandom.utils.Reference;
-import com.whammich.resrandom.utils.Register;
-import com.whammich.resrandom.utils.Utils;
+import com.whammich.resonantpather.ResonantPather;
+import com.whammich.resonantpather.items.types.BagType;
+import com.whammich.resonantpather.utils.Reference;
+import com.whammich.resonantpather.utils.Register;
+import com.whammich.resonantpather.utils.Utils;
 
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
@@ -38,7 +38,7 @@ public class ItemBaseBag extends Item implements IBauble {
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (!world.isRemote && isValidBag(stack))
-			player.openGui(ResRandom.modInstance, stack.getItemDamage(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
+			player.openGui(ResonantPather.modInstance, stack.getItemDamage(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
 
 		return stack;
 	}

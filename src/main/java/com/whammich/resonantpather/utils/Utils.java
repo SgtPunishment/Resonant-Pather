@@ -1,4 +1,4 @@
-package com.whammich.resrandom.utils;
+package com.whammich.resonantpather.utils;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,4 +1,4 @@
-package com.whammich.resrandom.utils;
+package com.whammich.resonantpather.utils;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

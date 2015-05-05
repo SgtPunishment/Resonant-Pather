@@ -1,10 +1,10 @@
-package com.whammich.resrandom.gui;
+package com.whammich.resonantpather.gui;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.whammich.resrandom.items.ItemBaseBag;
+import com.whammich.resonantpather.items.ItemBaseBag;
 
 public class SlotItemInv extends Slot {
 

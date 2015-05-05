@@ -1,4 +1,4 @@
-package com.whammich.resrandom.gui;
+package com.whammich.resonantpather.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

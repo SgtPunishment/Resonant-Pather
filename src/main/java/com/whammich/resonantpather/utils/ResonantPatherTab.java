@@ -1,18 +1,18 @@
-package com.whammich.resrandom.utils;
+package com.whammich.resonantpather.utils;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.whammich.resrandom.items.types.BagType;
+import com.whammich.resonantpather.items.types.BagType;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ResRandTab extends CreativeTabs {
+public class ResonantPatherTab extends CreativeTabs {
 
-		public ResRandTab() {
-			super("resrandom");
+		public ResonantPatherTab() {
+			super("resonantpather");
 		}
 
 

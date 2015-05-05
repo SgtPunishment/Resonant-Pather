@@ -1,4 +1,4 @@
-package com.whammich.resrandom.utils;
+package com.whammich.resonantpather.utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class Config {
 		if (!configDirectory.exists()) {
 			configDirectory.mkdir();
 		}
-		File configFile = new File(configDirectory, "Resonant-Randomiser.cfg");
+		File configFile = new File(configDirectory, "Resonant-Pather.cfg");
 		config = new Configuration(configFile);
 		syncConfig();
 	}
@@ -57,7 +57,7 @@ public class Config {
 	@SubscribeEvent
 	public void onConfigChanged(OnConfigChangedEvent event) {
 		if (event.modID.equals(Reference.MOD_ID)) {
-			ModLogger.logInfo(Utils.localize("chat.resrandom.util.configupdate"));
+			ModLogger.logInfo(Utils.localize("chat.resonantpather.util.configupdate"));
 			syncConfig();
 		}
 	}
@@ -69,9 +69,9 @@ public class Config {
 			// Generate Config fields here
 			// newStuff = config.getBoolean("Enable New Stuff", "general", true, "Enables the new blocks, items and recipes");
 			
-			ModLogger.logInfo(Utils.localize("chat.resrandom.util.configload"));
+			ModLogger.logInfo(Utils.localize("chat.resonantpather.util.configload"));
 		} catch (Exception e) {
-			ModLogger.logFatal(Utils.localize("chat.resrandom.util.configloadfail"));
+			ModLogger.logFatal(Utils.localize("chat.resonantpather.util.configloadfail"));
 			e.printStackTrace();
 		} finally {
 			if (config.hasChanged()) {

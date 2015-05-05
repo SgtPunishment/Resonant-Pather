@@ -1,9 +1,9 @@
-package com.whammich.resrandom.gui;
+package com.whammich.resonantpather.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.whammich.resrandom.items.types.BagType;
+import com.whammich.resonantpather.items.types.BagType;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 

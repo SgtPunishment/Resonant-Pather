@@ -1,4 +1,4 @@
-package com.whammich.resrandom.items.types;
+package com.whammich.resonantpather.items.types;
 
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package com.whammich.resrandom.items;
+package com.whammich.resonantpather.items;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cofh.api.energy.IEnergyContainerItem;
 
-import com.whammich.resrandom.items.types.ToolType;
-import com.whammich.resrandom.utils.Reference;
-import com.whammich.resrandom.utils.Register;
-import com.whammich.resrandom.utils.Utils;
+import com.whammich.resonantpather.items.types.ToolType;
+import com.whammich.resonantpather.utils.Reference;
+import com.whammich.resonantpather.utils.Register;
+import com.whammich.resonantpather.utils.Utils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,6 +41,14 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 		return super.onItemUse(stack, player, world, x, y, z, hitSide, hitX, hitY, hitZ);
 	}
 
+//	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+//		InventoryBaubles BaubleBag = PlayerHandler.getPlayerBaubles(player);
+//		if(!world.isRemote && BaubleBag.stackList[3] != null && player.isSneaking()){
+//			player.openGui(resonantpather.modInstance, BaubleBag.stackList[3].getItemDamage(), world, (int) player.posX, (int) player.posY, (int) player.posZ);
+//		}
+//		return stack;
+//	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 

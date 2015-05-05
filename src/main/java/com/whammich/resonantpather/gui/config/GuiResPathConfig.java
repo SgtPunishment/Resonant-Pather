@@ -1,11 +1,11 @@
-package com.whammich.resrandom.gui.config;
+package com.whammich.resonantpather.gui.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whammich.resrandom.utils.Config;
-import com.whammich.resrandom.utils.Reference;
-import com.whammich.resrandom.utils.Config.Section;
+import com.whammich.resonantpather.utils.Config;
+import com.whammich.resonantpather.utils.Reference;
+import com.whammich.resonantpather.utils.Config.Section;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigCategory;
