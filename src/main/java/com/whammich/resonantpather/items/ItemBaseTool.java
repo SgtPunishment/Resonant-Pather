@@ -95,7 +95,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister reg) {
         for (int i = 0; i < ToolType.values().length; i++)
-            icon[i] = reg.registerIcon(Reference.MOD_ID + ":" + ToolType.values()[i].toString() + "tool");
+            icon[i] = reg.registerIcon(Reference.MOD_ID + ":pathertool-" + ToolType.values()[i].toString());
     }
 
     @SideOnly(Side.CLIENT)

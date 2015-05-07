@@ -47,7 +47,7 @@ public class ItemBaseBag extends Item implements IBauble {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
     	for (int i = 0; i < BagType.values().length; i++)
-    		icon[i] = reg.registerIcon(Reference.MOD_ID + ":" + BagType.values()[i].toString() + "bag");
+    		icon[i] = reg.registerIcon(Reference.MOD_ID + ":patherpack-" + BagType.values()[i].toString());
 	}
 
     @SideOnly(Side.CLIENT)

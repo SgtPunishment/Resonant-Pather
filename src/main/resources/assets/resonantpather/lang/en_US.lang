@@ -1,0 +1,24 @@
+# GUI
+itemGroup.resonantpather=Resonant Pather
+# Chat
+chat.resonantpather.util.configupdate=Updating config...
+chat.resonantpather.util.configload=Loaded configuration file!
+chat.resonantpather.util.configloadfail=Failed to load configuration file!
+# Items / Bags
+item.resonantpather.bag.basic.name=Basic Bag
+item.resonantpather.bag.hardened.name=Hardened Bag
+item.resonantpather.bag.reinforced.name=Reinforced Bag
+item.resonantpather.bag.resonant.name=Resonant Bag
+# Items / Tools
+item.resonantpather.tool.creative.name=Creative Pather
+item.resonantpather.tool.leadstone.name=Leadstone Pather
+item.resonantpather.tool.hardened.name=Hardened Pather
+item.resonantpather.tool.redstone.name=Redstone Pather
+item.resonantpather.tool.resonant.name=Resonant Pather
+# Tooltips
+info.resonantpather.tooltip.bag.slots=Slots: %s
+info.resonantpather.tooltip.tool.charge=Charge
+info.resonantpather.tooltip.null=Null Tooltip Please Ignore
+info.resonantpather.tooltip.hold=Hold
+info.resonantpather.tooltip.shift=Shift
+info.resonantpather.tooltip.forDetails=For Details
