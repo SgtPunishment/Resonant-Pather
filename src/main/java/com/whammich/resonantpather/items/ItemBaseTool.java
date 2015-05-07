@@ -12,9 +12,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cofh.api.energy.IEnergyContainerItem;
 
+import com.whammich.resonantpather.ResonantPather;
 import com.whammich.resonantpather.items.types.ToolType;
 import com.whammich.resonantpather.utils.Reference;
-import com.whammich.resonantpather.utils.Register;
 import com.whammich.resonantpather.utils.Utils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -29,7 +29,7 @@ public class ItemBaseTool extends Item implements IEnergyContainerItem {
 		super();
 
 		setUnlocalizedName(Reference.MOD_ID + ".tool.");
-        setCreativeTab(Register.CREATIVE_TAB);
+        setCreativeTab(ResonantPather.CREATIVE_TAB);
         setMaxStackSize(1);
     }
 

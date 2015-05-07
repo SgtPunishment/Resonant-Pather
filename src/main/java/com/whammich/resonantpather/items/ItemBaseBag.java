@@ -17,7 +17,6 @@ import baubles.api.IBauble;
 import com.whammich.resonantpather.ResonantPather;
 import com.whammich.resonantpather.items.types.BagType;
 import com.whammich.resonantpather.utils.Reference;
-import com.whammich.resonantpather.utils.Register;
 import com.whammich.resonantpather.utils.Utils;
 
 import cpw.mods.fml.common.Optional;
@@ -32,7 +31,7 @@ public class ItemBaseBag extends Item implements IBauble {
 	public ItemBaseBag() {
 		super();
 
-		setCreativeTab(Register.CREATIVE_TAB);
+		setCreativeTab(ResonantPather.CREATIVE_TAB);
 		setUnlocalizedName(Reference.MOD_ID + ".bag.");
         setMaxStackSize(1);
 	}

@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.whammich.resonantpather.ResonantPather;
 import com.whammich.resonantpather.items.types.BagType;
 
 import cpw.mods.fml.relauncher.Side;
@@ -17,7 +18,7 @@ public class ResonantPatherTab extends CreativeTabs {
 
 
 		public static ItemStack getStackItem(BagType advanced) {
-	        return new ItemStack(Register.bagBase, 1, advanced.ordinal());
+	        return new ItemStack(ResonantPather.bagBase, 1, advanced.ordinal());
 	    }
 		
 		@Override
