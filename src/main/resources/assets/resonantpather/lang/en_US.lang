@@ -5,6 +5,7 @@ chat.resonantpather.util.configupdate=Updating config...
 chat.resonantpather.util.configload=Loaded configuration file!
 chat.resonantpather.util.configloadfail=Failed to load configuration file!
 # Items / Bags
+item.resonantpather.bag.creative.name=Creative Bag
 item.resonantpather.bag.basic.name=Basic Bag
 item.resonantpather.bag.hardened.name=Hardened Bag
 item.resonantpather.bag.reinforced.name=Reinforced Bag

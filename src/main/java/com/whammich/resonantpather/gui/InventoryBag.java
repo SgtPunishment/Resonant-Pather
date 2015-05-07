@@ -47,6 +47,11 @@ public class InventoryBag implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		ItemStack stack = getStackInSlot(slot);
+		
+		if(bType == BagType.CREATIVE) {
+			return stack;
+		} 
+		
 		if(stack != null) {
 			if(stack.stackSize > amount) {
 				stack = stack.splitStack(amount);

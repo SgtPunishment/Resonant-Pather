@@ -6,6 +6,7 @@ import net.minecraft.item.EnumRarity;
 
 public enum BagType {
 
+	CREATIVE(54, EnumRarity.epic),
 	BASIC(9, EnumRarity.common), 
 	HARDENED(18, EnumRarity.common), 
 	REINFORCED(36, EnumRarity.uncommon), 
