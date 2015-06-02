@@ -11,8 +11,7 @@ public class ContainerBag extends Container {
 	public final InventoryBag inventory;
 	private int numRows;
 	
-	private static final int INV_START = InventoryBag.INV_SIZE, INV_END = INV_START + 26,
-			HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
+	private static final int INV_START = InventoryBag.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
 	@SuppressWarnings("unused")
 	public ContainerBag(EntityPlayer par1Player, InventoryPlayer player, InventoryBag inventoryBag) {
@@ -66,13 +65,6 @@ public class ContainerBag extends Container {
 				}
 				slot.onSlotChange(stack1, stack);
 			} else {
-				// if(stack1.getItem() instanceof Block) {
-				// if(!this.mergeItemStack(stack1, 0, InventoryBag.INV_SIZE,
-				// false)){
-				// return null;
-				// }
-				// }
-
 				if (slots >= INV_START) {
 					if (!this.mergeItemStack(stack1, 0, INV_START, false)) {
 						return null;
